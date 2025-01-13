@@ -1,0 +1,19 @@
+<div>
+    <button (click)="calendarMode.set('monthly')">monthly</button>
+    <button (click)="calendarMode.set('weekly')">weekly</button>
+    <button (click)="calendarMode.set('daily')">daily</button>
+</div>
+
+@switch (calendarMode()) {
+    @case ('monthly') {
+        <app-monthly-view />
+    }
+    @case ('weekly') {
+        <app-weekly-view />
+    }
+    @case ('daily') {
+        <app-daily-view />
+    }
+}
+  
+
