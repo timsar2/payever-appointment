@@ -33,8 +33,8 @@
                 [appointments]="cellAppointments(day)"
                 [day]="day"
                 [connectedDropLists]="connectedDropLists()"
-                (onClick)="selectDay(day)"
-                (onAppointmentClick)="showAppointment($event)"
+                (onClick)="openDialog(day)"
+                (onAppointmentClick)="openDialog(day,$event)"
               />
             </app-calendar-drop-list>
         }

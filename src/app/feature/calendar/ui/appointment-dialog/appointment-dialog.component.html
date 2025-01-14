@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>
+    {{ data.isEdit ? 'Update Appointment' : 'Create Appointment' }}
+  </h2>
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>First Name</mat-label>
+      <input matInput [(ngModel)]="appointment.firstName" placeholder="Enter first name" />
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Last Name</mat-label>
+      <input matInput [(ngModel)]="appointment.lastName" placeholder="Enter last name" />
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Time</mat-label>
+    <input matInput [(ngModel)]="appointment.dateTime" placeholder="yyyy-MM-DDTHH:mm" />
+    </mat-form-field>
+      
+    <mat-checkbox [(ngModel)]="appointment.hasVisited">Has Visited</mat-checkbox>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="delete()">Delete</button>
+  </div>
+  

@@ -1,8 +1,8 @@
-<div>
-    <button (click)="calendarMode.set('monthly')">monthly</button>
-    <button (click)="calendarMode.set('weekly')">weekly</button>
-    <button (click)="calendarMode.set('daily')">daily</button>
-    <button (click)="showToday()">Today</button>
+<div class="calendar-mode-buttons">
+    <button mat-stroked-button (click)="calendarMode.set('monthly')">monthly</button>
+    <button mat-stroked-button (click)="calendarMode.set('weekly')">weekly</button>
+    <button mat-stroked-button (click)="calendarMode.set('daily')">daily</button>
+    <button mat-stroked-button (click)="showToday()">Today</button>
 </div>
 
 @switch (calendarMode()) {

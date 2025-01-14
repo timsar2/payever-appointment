@@ -1,40 +1,29 @@
-import { Component, model, signal } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, DestroyRef, inject, model, OnInit, signal } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { Appointment } from '../models/appointment.model';
-
+import { MatDialog } from '@angular/material/dialog';
+import { AppointmentDialogComponent } from '../ui/appointment-dialog/appointment-dialog.component';
+import { HttpClient } from '@angular/common/http';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { firstValueFrom } from 'rxjs';
+import { CalendarService } from '../calendar.service';
 @Component({
   selector: 'app-calendar',
   imports: [CommonModule, MatIconModule, MatButtonModule, MatChipsModule],
   template: ``
 })
-export class CalendarBaseComponent {
+export class CalendarBaseComponent implements OnInit {
   viewDate = model.required<Date>()
+
+  dialog = inject(MatDialog)
+  calendarService = inject(CalendarService)
+  #destroyRef = inject(DestroyRef)
   
-  appointments = signal<Appointment[]>([
-    {
-      id: 1,
-      dateTime: '2025-01-09T12:30',
-      firstName: 'Ali',
-      lastName: 'Golab',
-      hasVisited: true
-    },
-    {
-      id: 2,
-      dateTime: '2025-01-09T13:00',
-      firstName: 'Faezeh',
-      lastName: 'Safari'
-    },
-    {
-      id: 3,
-      dateTime: '2025-01-11T16:45',
-      firstName: 'Narges',
-      lastName: 'Moghadam'
-    },
-  ])
+  appointments = signal<Appointment[]>([])
 
   dropItem(event: CdkDragDrop<Appointment>, day: Date) {
     
@@ -73,8 +62,54 @@ export class CalendarBaseComponent {
     this.viewDate.set(new Date())
   }
 
-  showAppointment(appointment: Appointment){
-    debugger
+  openDialog(day: Date, appointment?: Appointment) {
+    const isEdit = !appointment ? false : true
+
+    const dialogRef = this.dialog.open(AppointmentDialogComponent, {
+      width: '400px',
+      data: { appointment: appointment || {dateTime: day.toISOString().slice(0,16)}, isEdit }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if(result.isDelete){
+          this.deleteAppointment(result.appointment.id)
+        }
+        else if (isEdit) {
+          this.updateAppointment(result.appointment)
+        } else {
+          this.createAppointment(result.appointment)
+        }
+      }
+    })
+  }
+
+  createAppointment(newAppointment: Appointment) {
+    newAppointment.id = Math.max(...this.appointments().map(a => a.id), 0) + 1
+    this.appointments.update(current => [...current, newAppointment])
+  }
+
+  updateAppointment(updatedAppointment: Appointment) {
+    this.appointments.update(current =>
+      current.map(appointment =>
+        appointment.id === updatedAppointment.id ? updatedAppointment : appointment
+      )
+    )
+  }
+
+  deleteAppointment(id: number) {
+    this.appointments.update(current => current.filter(appointment => appointment.id !== id))
+  }
+
+  async fetchAppointment() {
+    const data = await firstValueFrom(this.calendarService.getAppointment())
+    if(data){
+      this.appointments.set(data)
+    }
+  }
+
+  ngOnInit(): void {
+    this.fetchAppointment()
   }
 }
 
