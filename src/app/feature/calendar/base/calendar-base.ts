@@ -11,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { firstValueFrom } from 'rxjs';
 import { CalendarService } from '../calendar.service';
+import {formatDate} from '../../../utils/formatDate'
+
 @Component({
   selector: 'app-calendar',
   imports: [CommonModule, MatIconModule, MatButtonModule, MatChipsModule],
@@ -49,11 +51,7 @@ export class CalendarBaseComponent implements OnInit {
     updatedDateTime.setHours(prvDateTime.getHours());
     updatedDateTime.setMinutes(prvDateTime.getMinutes());
 
-    appointment.dateTime = updatedDateTime.getFullYear() + '-' +
-      ('0' + (updatedDateTime.getMonth() + 1)).slice(-2) + '-' +
-      ('0' + updatedDateTime.getDate()).slice(-2) + 'T' +
-      ('0' + updatedDateTime.getHours()).slice(-2) + ':' +
-      ('0' + updatedDateTime.getMinutes()).slice(-2);
+    appointment.dateTime = formatDate(updatedDateTime)
 
     return appointment
   }
@@ -67,7 +65,7 @@ export class CalendarBaseComponent implements OnInit {
 
     const dialogRef = this.dialog.open(AppointmentDialogComponent, {
       width: '400px',
-      data: { appointment: appointment || {dateTime: day.toISOString().slice(0,16)}, isEdit }
+      data: { appointment: appointment || {dateTime: formatDate(day)}, isEdit }
     })
 
     dialogRef.afterClosed().subscribe(result => {

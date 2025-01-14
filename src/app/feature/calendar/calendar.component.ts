@@ -39,7 +39,6 @@ export class CalendarComponent {
   ])
 
   dropItem(event: CdkDragDrop<Appointment[]>) {
-    debugger
     this.appointments.update(appointments => {
       moveItemInArray(appointments, event.previousIndex, event.currentIndex);
       return appointments;
