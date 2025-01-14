@@ -16,27 +16,7 @@ export class CalendarComponent {
   viewDate = signal<Date>(new Date)
   calendarMode = signal<'monthly' | 'weekly' | 'daily'>('monthly')
 
-  appointments = signal<Appointment[]>([
-    {
-      id: 1,
-      dateTime: '2025-01-09T12:30',
-      firstName: 'Ali',
-      lastName: 'Golab',
-      hasVisited: true
-    },
-    {
-      id: 2,
-      dateTime: '2025-01-09T13:00',
-      firstName: 'Faezeh',
-      lastName: 'Safari'
-    },
-    {
-      id: 3,
-      dateTime: '2025-01-11T16:45',
-      firstName: 'Narges',
-      lastName: 'Moghadam'
-    },
-  ])
+  appointments = signal<Appointment[]>([])
 
   dropItem(event: CdkDragDrop<Appointment[]>) {
     this.appointments.update(appointments => {

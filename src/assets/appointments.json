@@ -4,18 +4,24 @@
       "dateTime": "2025-01-09T12:30",
       "firstName": "Ali",
       "lastName": "Golab",
+      "age": 23,
+      "email": "info.golab@gmail.com",
       "hasVisited": true
     },
     {
       "id": 2,
       "dateTime": "2025-01-09T13:00",
       "firstName": "Faezeh",
-      "lastName": "Safari"
+      "lastName": "Safari",
+      "age": 18,
+      "email": "info.safari72@gmail.com"
     },
     {
       "id": 3,
       "dateTime": "2025-01-11T16:45",
       "firstName": "Narges",
-      "lastName": "Moghadam"
+      "lastName": "Moghadam",
+      "age": 63,
+      "email": "moghadam@yahoo.com"
     }
 ]
