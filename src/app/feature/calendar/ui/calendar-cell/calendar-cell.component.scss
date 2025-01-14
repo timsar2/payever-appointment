@@ -1,0 +1,65 @@
+.day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+.day.today {
+  background-color: #e3f2fd;
+  font-weight: bold;
+}
+
+.day.outside {
+  color: #aaa;
+}
+
+.day:hover {
+  background-color: #f1f1f1;
+}
+
+.day-number {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.mat-chip-set {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.mat-chip {
+  background-color: #42a5f5;
+  color: white;
+  cursor: grab;
+  user-select: none;
+  margin: 4px 0px 4px 12px !important;
+  border-radius: 16px;
+  font-size: 12px;
+}
+
+.mat-chip:active {
+  cursor: grabbing !important;
+}
+
+.cdk-drag-preview {
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.5;
+  background-color: #e3f2fd;
+  border: 1px dashed #42a5f5;
+}
+
+.cdk-drop-list-dragging {
+  border: 2px dashed #42a5f5;
+}

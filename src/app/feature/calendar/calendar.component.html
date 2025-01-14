@@ -2,17 +2,18 @@
     <button (click)="calendarMode.set('monthly')">monthly</button>
     <button (click)="calendarMode.set('weekly')">weekly</button>
     <button (click)="calendarMode.set('daily')">daily</button>
+    <button (click)="showToday()">Today</button>
 </div>
 
 @switch (calendarMode()) {
     @case ('monthly') {
-        <app-monthly-view />
+        <app-monthly-view [viewDate]="viewDate()"/>
     }
     @case ('weekly') {
-        <app-weekly-view />
+        <app-weekly-view [viewDate]="viewDate()" />
     }
     @case ('daily') {
-        <app-daily-view />
+        <app-daily-view [viewDate]="viewDate()" />
     }
 }
   

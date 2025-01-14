@@ -1,0 +1,25 @@
+<div
+    class="day"
+    [class.today]="isToday()"
+    [class.outside]="!isCurrentMonth()"
+    (click)="onClick.emit()"
+    cdkDropList
+    [cdkDropListData]="day()"
+    [cdkDropListConnectedTo]="connectedDropLists()"
+    
+>
+    <mat-chip-set>
+        @for (appointment of appointments(); track appointment.id) {
+            <mat-chip 
+                class="mat-chip"
+                (click)="onChipClick($event, appointment)"
+                [cdkDragData]="appointment" 
+                cdkDrag
+            >
+                {{ appointment.dateTime | date: 'HH:mm' }}
+            </mat-chip>
+        }
+    </mat-chip-set>
+
+    <span class="day-number">{{ day()?.getDate() }}</span>
+</div>

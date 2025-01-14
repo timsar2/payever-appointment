@@ -20,16 +20,23 @@
     </div>
   
     <!-- Days Grid -->
-    <div class="days-grid">
+    <div class="calendar-grid">
         @for (day of days(); track $index) {
-            <div
-                class="day"
-                [class.today]="isToday(day)"
-                [class.outside]="!isCurrentMonth(day)"
-                (click)="selectDay(day)"
+            <app-calendar-drop-list
+              [data]="cellAppointments(day)"
+              [day]="day"
+              [connectedDropLists]="connectedDropLists()"
+              [index]="$index"
+              (onDropItem)="dropItem($event, day)"
             >
-                <span class="day-number">{{ day.getDate() }}</span>
-            </div>
+              <app-calendar-cell
+                [appointments]="cellAppointments(day)"
+                [day]="day"
+                [connectedDropLists]="connectedDropLists()"
+                (onClick)="selectDay(day)"
+                (onAppointmentClick)="showAppointment($event)"
+              />
+            </app-calendar-drop-list>
         }
     </div>
   </div>
