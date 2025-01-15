@@ -41,6 +41,11 @@ export class AppointmentDialogComponent {
   }
 
   save() {
+    this.appointmentForm.markAllAsTouched()
+    if(!this.appointmentForm.valid){
+      return
+    }
+
     this.dialogRef.close({appointment: this.appointmentForm.getRawValue()})
   }
 
