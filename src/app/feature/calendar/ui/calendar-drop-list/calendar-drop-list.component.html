@@ -1,10 +1,10 @@
 <span
-    class="calendar-cell"
-    cdkDropList
-    [cdkDropListData]="data()"
-    [cdkDropListConnectedTo]="connectedDropLists()"
-    [id]="'dropList-' + index()"
-    (cdkDropListDropped)="onDropItem.emit($event)"
+  class="calendar-cell"
+  cdkDropList
+  [cdkDropListData]="data()"
+  [cdkDropListConnectedTo]="connectedDropLists()"
+  [id]="'dropList-' + index()"
+  (cdkDropListDropped)="onDropItem.emit($event)"
 >
-<ng-content ></ng-content>
+  <ng-content></ng-content>
 </span>

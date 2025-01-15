@@ -1,13 +1,13 @@
 .day {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
 .day.today {
   background-color: #e3f2fd;
   font-weight: bold;

@@ -1,43 +1,42 @@
 <div class="calendar-container mat-elevation-z4">
-    <!-- Header -->
-    <div class="calendar-header">
-      <button mat-icon-button (click)="prevMonth()">
-        <mat-icon>chevron_left</mat-icon>
-      </button>
-      <div class="month-label">{{ viewDate() | date: 'MMMM yyyy' }}</div>
-      <button mat-icon-button (click)="nextMonth()">
-        <mat-icon>chevron_right</mat-icon>
-      </button>
-    </div>
-  
-    <!-- Weekdays -->
-    <div class="weekdays">
-        @for (day of weekdays; track $index) {
-            <div class="weekday">
-                {{ day }}
-            </div>
-        }
-    </div>
-  
-    <!-- Days Grid -->
-    <div class="calendar-grid">
-        @for (day of days(); track $index) {
-            <app-calendar-drop-list
-              [data]="cellAppointments(day)"
-              [day]="day"
-              [connectedDropLists]="connectedDropLists()"
-              [index]="$index"
-              (onDropItem)="dropItem($event, day)"
-            >
-              <app-calendar-cell
-                [appointments]="cellAppointments(day)"
-                [day]="day"
-                [connectedDropLists]="connectedDropLists()"
-                (onClick)="openDialog(day)"
-                (onAppointmentClick)="openDialog(day,$event)"
-              />
-            </app-calendar-drop-list>
-        }
-    </div>
+  <!-- Header -->
+  <div class="calendar-header">
+    <button mat-icon-button (click)="prevMonth()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <div class="month-label">{{ viewDate() | date: 'MMMM yyyy' }}</div>
+    <button mat-icon-button (click)="nextMonth()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
   </div>
-  
+
+  <!-- Weekdays -->
+  <div class="weekdays">
+    @for (day of weekdays; track $index) {
+      <div class="weekday">
+        {{ day }}
+      </div>
+    }
+  </div>
+
+  <!-- Days Grid -->
+  <div class="calendar-grid">
+    @for (day of days(); track $index) {
+      <app-calendar-drop-list
+        [data]="cellAppointments(day)"
+        [day]="day"
+        [connectedDropLists]="connectedDropLists()"
+        [index]="$index"
+        (onDropItem)="dropItem($event, day)"
+      >
+        <app-calendar-cell
+          [appointments]="cellAppointments(day)"
+          [day]="day"
+          [connectedDropLists]="connectedDropLists()"
+          (onClick)="openDialog(day)"
+          (onAppointmentClick)="openDialog(day, $event)"
+        />
+      </app-calendar-drop-list>
+    }
+  </div>
+</div>

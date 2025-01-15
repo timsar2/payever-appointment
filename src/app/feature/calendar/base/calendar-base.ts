@@ -1,17 +1,17 @@
-import { Component, DestroyRef, inject, model, OnInit, signal } from '@angular/core';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
-import { Appointment } from '../models/appointment.model';
-import { MatDialog } from '@angular/material/dialog';
-import { AppointmentDialogComponent } from '../ui/appointment-dialog/appointment-dialog.component';
-import { HttpClient } from '@angular/common/http';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { firstValueFrom } from 'rxjs';
-import { CalendarService } from '../calendar.service';
-import {formatDate} from '../../../utils/formatDate'
+import { Component, DestroyRef, inject, model, OnInit, signal } from '@angular/core'
+import { CdkDragDrop } from '@angular/cdk/drag-drop'
+import { CommonModule } from '@angular/common'
+import { MatButtonModule } from '@angular/material/button'
+import { MatChipsModule } from '@angular/material/chips'
+import { MatIconModule } from '@angular/material/icon'
+import { Appointment } from '../models/appointment.model'
+import { MatDialog } from '@angular/material/dialog'
+import { AppointmentDialogComponent } from '../ui/appointment-dialog/appointment-dialog.component'
+import { HttpClient } from '@angular/common/http'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { firstValueFrom } from 'rxjs'
+import { CalendarService } from '../calendar.service'
+import { formatDate } from '../../../utils/formatDate'
 
 @Component({
   selector: 'app-calendar',
@@ -24,32 +24,27 @@ export class CalendarBaseComponent implements OnInit {
   dialog = inject(MatDialog)
   calendarService = inject(CalendarService)
   #destroyRef = inject(DestroyRef)
-  
+
   appointments = signal<Appointment[]>([])
 
   dropItem(event: CdkDragDrop<Appointment>, day: Date) {
-    
-    const appointment: Appointment = this.#getUpdatedAppointment(event.item.data, day);
+    const appointment: Appointment = this.#getUpdatedAppointment(event.item.data, day)
 
-    if (!appointment || !day) return;
-    
+    if (!appointment || !day) return
+
     this.appointments.update(appointments => {
-      appointments.map(x => x.id == appointment.id
-        ? {...x, appointment }
-        : x
-      
-      )
+      appointments.map(x => (x.id == appointment.id ? { ...x, appointment } : x))
 
-      return appointments;
+      return appointments
     })
   }
 
   #getUpdatedAppointment(appointment: Appointment, day: Date): Appointment {
-    const updatedDateTime = new Date(day);
-    const prvDateTime = new Date(appointment.dateTime);
+    const updatedDateTime = new Date(day)
+    const prvDateTime = new Date(appointment.dateTime)
 
-    updatedDateTime.setHours(prvDateTime.getHours());
-    updatedDateTime.setMinutes(prvDateTime.getMinutes());
+    updatedDateTime.setHours(prvDateTime.getHours())
+    updatedDateTime.setMinutes(prvDateTime.getMinutes())
 
     appointment.dateTime = formatDate(updatedDateTime)
 
@@ -65,15 +60,14 @@ export class CalendarBaseComponent implements OnInit {
 
     const dialogRef = this.dialog.open(AppointmentDialogComponent, {
       width: '400px',
-      data: { appointment: appointment || {dateTime: formatDate(day)}, isEdit }
+      data: { appointment: appointment || { dateTime: formatDate(day) }, isEdit }
     })
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if(result.isDelete){
+        if (result.isDelete) {
           this.deleteAppointment(result.appointment.id)
-        }
-        else if (isEdit) {
+        } else if (isEdit) {
           this.updateAppointment(result.appointment)
         } else {
           this.createAppointment(result.appointment)
@@ -89,9 +83,7 @@ export class CalendarBaseComponent implements OnInit {
 
   updateAppointment(updatedAppointment: Appointment) {
     this.appointments.update(current =>
-      current.map(appointment =>
-        appointment.id === updatedAppointment.id ? updatedAppointment : appointment
-      )
+      current.map(appointment => (appointment.id === updatedAppointment.id ? updatedAppointment : appointment))
     )
   }
 
@@ -101,7 +93,7 @@ export class CalendarBaseComponent implements OnInit {
 
   async fetchAppointment() {
     const data = await firstValueFrom(this.calendarService.getAppointment())
-    if(data){
+    if (data) {
       this.appointments.set(data)
     }
   }
@@ -110,4 +102,3 @@ export class CalendarBaseComponent implements OnInit {
     this.fetchAppointment()
   }
 }
-

@@ -1,43 +1,42 @@
 <h2 mat-dialog-title>
-    {{ data.isEdit ? 'Update Appointment' : 'Create Appointment' }}
-  </h2>
-  <div mat-dialog-content>
-    <form [formGroup]="appointmentForm">
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>First Name</mat-label>
-        <input matInput formControlName="firstName" placeholder="Enter first name" />
-      </mat-form-field>
-    
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Last Name</mat-label>
-        <input matInput formControlName="lastName" placeholder="Enter last name" />
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Age</mat-label>
-        <input matInput formControlName="age" placeholder="Age of patient" type="number" />
-      </mat-form-field>
+  {{ data.isEdit ? 'Update Appointment' : 'Create Appointment' }}
+</h2>
+<div mat-dialog-content>
+  <form [formGroup]="appointmentForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" placeholder="Enter first name" />
+    </mat-form-field>
 
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" placeholder="Enter a valid email" />
-      </mat-form-field>
-    
-      <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" placeholder="Enter last name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Age</mat-label>
+      <input matInput formControlName="age" placeholder="Age of patient" type="number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Enter a valid email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
       <mat-label>Time</mat-label>
       <input matInput formControlName="dateTime" placeholder="yyyy-MM-DDTHH:mm" />
-      </mat-form-field>
-        
-      <mat-checkbox formControlName="hasVisited">Has Visited</mat-checkbox>
-    </form>
-  </div>
+    </mat-form-field>
 
-  <div mat-dialog-actions>
-    <button mat-button (click)="cancel()">Cancel</button>
-    <button mat-raised-button color="primary" (click)="save()">Save</button>
-  </div>
+    <mat-checkbox formControlName="hasVisited">Has Visited</mat-checkbox>
+  </form>
+</div>
 
-  <div mat-dialog-actions>
-    <button mat-button (click)="delete()">Delete</button>
-  </div>
-  
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="save()">Save</button>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="delete()">Delete</button>
+</div>

@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { MonthlyViewComponent } from './monthly-view.component';
+import { MonthlyViewComponent } from './monthly-view.component'
 
 describe('MonthlyViewComponent', () => {
-  let component: MonthlyViewComponent;
-  let fixture: ComponentFixture<MonthlyViewComponent>;
+  let component: MonthlyViewComponent
+  let fixture: ComponentFixture<MonthlyViewComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MonthlyViewComponent]
-    })
-    .compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(MonthlyViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(MonthlyViewComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

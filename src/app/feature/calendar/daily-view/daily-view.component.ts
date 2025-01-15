@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import {MatChipsModule} from '@angular/material/chips';
-import { CommonModule } from '@angular/common';
-import { CalendarBaseComponent } from '../base/calendar-base';
+import { Component } from '@angular/core'
+import { MatChipsModule } from '@angular/material/chips'
+import { CommonModule } from '@angular/common'
+import { CalendarBaseComponent } from '../base/calendar-base'
 
 export interface Vegetable {
-  name: string;
+  name: string
 }
 
 @Component({
@@ -13,5 +13,4 @@ export interface Vegetable {
   templateUrl: './daily-view.component.html',
   styleUrl: './daily-view.component.scss'
 })
-export class DailyViewComponent extends CalendarBaseComponent  {
-}
+export class DailyViewComponent extends CalendarBaseComponent {}

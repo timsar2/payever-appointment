@@ -1,6 +1,6 @@
-import {CdkDragDrop, CdkDropList,} from '@angular/cdk/drag-drop';
-import { Component, input, output } from '@angular/core';
-import { Appointment } from '../../models/appointment.model';
+import { CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop'
+import { Component, input, output } from '@angular/core'
+import { Appointment } from '../../models/appointment.model'
 
 @Component({
   selector: 'app-calendar-drop-list',

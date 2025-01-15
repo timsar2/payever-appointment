@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { DailyViewComponent } from './daily-view.component';
+import { DailyViewComponent } from './daily-view.component'
 
 describe('DailyViewComponent', () => {
-  let component: DailyViewComponent;
-  let fixture: ComponentFixture<DailyViewComponent>;
+  let component: DailyViewComponent
+  let fixture: ComponentFixture<DailyViewComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DailyViewComponent]
-    })
-    .compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(DailyViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(DailyViewComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

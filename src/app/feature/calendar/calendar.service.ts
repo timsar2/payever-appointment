@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Appointment } from './models/appointment.model';
+import { HttpClient } from '@angular/common/http'
+import { inject, Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
+import { Appointment } from './models/appointment.model'
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +22,4 @@ export class CalendarService {
     // real api must be call
     return this.http.delete<Appointment[]>('assets/appointments.json')
   }
-  
 }
