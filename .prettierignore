@@ -1,0 +1,16 @@
+# Add files here to ignore them from prettier formatting
+
+/dist
+/www
+/coverage
+/node_modules
+/.angular
+/.vscode
+/.husky
+/documentations
+pnpm-lock.yaml
+package-lock.json
+package.json
+*.json
+*.yaml
+*.js
