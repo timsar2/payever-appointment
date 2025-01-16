@@ -3,9 +3,7 @@ import { inject, Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { Appointment } from './models/appointment.model'
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CalendarService {
   http = inject(HttpClient)
 
