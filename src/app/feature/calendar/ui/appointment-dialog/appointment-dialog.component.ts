@@ -1,8 +1,8 @@
-import { Component, inject, Inject } from '@angular/core'
+import { Component, Inject } from '@angular/core'
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog'
 import { Appointment } from '../../models/appointment.model'
 import { MatFormFieldModule } from '@angular/material/form-field'
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'
 import { MatButtonModule } from '@angular/material/button'
 
 import { MatInputModule } from '@angular/material/input'

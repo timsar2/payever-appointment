@@ -51,10 +51,7 @@ export class CalendarCellComponent {
   }
 
   onChipClick(event: MouseEvent, appointment: Appointment): void {
-    // Prevent the click event from propagating to the parent div
     event.stopPropagation()
-
-    // Emit the clicked appointment
     this.onAppointmentClick.emit(appointment)
   }
 }
