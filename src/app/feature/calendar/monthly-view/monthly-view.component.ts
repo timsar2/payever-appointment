@@ -5,7 +5,6 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatChipsModule } from '@angular/material/chips'
 import { CalendarCellComponent } from '../ui/calendar-cell/calendar-cell.component'
 import { Appointment } from '../models/appointment.model'
-import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop'
 import { CalendarDropListComponent } from '../ui/calendar-drop-list/calendar-drop-list.component'
 import { CalendarBaseComponent } from '../base/calendar-base'
 @Component({
