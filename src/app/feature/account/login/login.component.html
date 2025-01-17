@@ -1,0 +1,8 @@
+@if (authSignal().isAuthenticated) {
+  <p>
+    You are logged in as <b> {{ authSignal().user }} </b>
+  </p>
+  <button mat-button (click)="logout()">Logout</button>
+} @else {
+  <button mat-button routerLink="/home/dashboard" (click)="doLogin()">Login</button>
+}

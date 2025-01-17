@@ -1,19 +1,24 @@
 import { Routes } from '@angular/router'
 import { CalendarService } from './feature/calendar/calendar.service'
+import { AuthGuard } from './shell/auth/auth.guard'
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/calendar',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {
-    path: 'calendar',
-    providers: [CalendarService],
-    loadComponent: () => import('./feature/calendar/calendar.component').then(m => m.CalendarComponent)
+    path: 'home',
+    loadChildren: () => import('@app/shell/layout/layout.routes').then(m => m.routes)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./feature/account/auth.routes').then(m => m.routes)
   },
   {
     path: '**',
-    redirectTo: '/'
+    redirectTo: '',
+    pathMatch: 'full'
   }
 ]
