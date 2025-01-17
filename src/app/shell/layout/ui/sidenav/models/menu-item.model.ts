@@ -27,5 +27,10 @@ export const Pages: MenuItem[] = [
     title: 'Account',
     icon: 'person-circle-outline',
     url: '/login'
+  },
+  {
+    title: 'Change Log',
+    icon: 'published_with_changes',
+    url: '/home/change-log'
   }
 ]

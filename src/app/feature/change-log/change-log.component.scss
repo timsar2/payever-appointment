@@ -1,0 +1,33 @@
+.changelog-container {
+  font-family: Arial, sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.check-icon {
+  color: green;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+strong {
+  font-size: 1.2em;
+  margin-right: 5px;
+}
+
+.description {
+  font-size: 1em;
+  color: #555;
+}

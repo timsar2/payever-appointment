@@ -28,6 +28,11 @@ export const routes: Routes = [
             // redirectTo: ['/login'],
           })
         ]
+      },
+      {
+        path: 'change-log',
+        title: 'Change Log',
+        loadComponent: () => import('@app/feature/change-log/change-log.component').then(m => m.ChangelogComponent)
       }
     ]
   },

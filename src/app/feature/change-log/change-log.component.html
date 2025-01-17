@@ -1,0 +1,12 @@
+<div class="changelog-container">
+  <h2>Changelog after previous review</h2>
+  <ul>
+    @for (item of changelog; track $index) {
+      <li>
+        <span class="check-icon">✔️</span>
+        <strong>{{ item.title }}</strong>
+        <p class="description">{{ item.description }}</p>
+      </li>
+    }
+  </ul>
+</div>
