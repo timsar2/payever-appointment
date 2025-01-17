@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, model, OnInit, signal } from '@angular/core'
+import { Component, inject, model } from '@angular/core'
 import { CdkDragDrop } from '@angular/cdk/drag-drop'
 import { CommonModule } from '@angular/common'
 import { MatButtonModule } from '@angular/material/button'
@@ -7,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon'
 import { Appointment } from '../models/appointment.model'
 import { MatDialog } from '@angular/material/dialog'
 import { AppointmentDialogComponent } from '../ui/appointment-dialog/appointment-dialog.component'
-import { firstValueFrom } from 'rxjs'
 import { CalendarService } from '../calendar.service'
 import { formatDate } from '../../../utils/formatDate'
 
@@ -16,14 +15,13 @@ import { formatDate } from '../../../utils/formatDate'
   imports: [CommonModule, MatIconModule, MatButtonModule, MatChipsModule],
   template: ``
 })
-export class CalendarBaseComponent implements OnInit {
+export class CalendarBaseComponent {
   viewDate = model.required<Date>()
 
   dialog = inject(MatDialog)
   calendarService = inject(CalendarService)
-  #destroyRef = inject(DestroyRef)
 
-  appointments = signal<Appointment[]>([])
+  appointments = model<Appointment[]>([])
 
   dropItem(event: CdkDragDrop<Appointment>, day: Date) {
     const appointment: Appointment = this.#getUpdatedAppointment(event.item.data, day)
@@ -87,16 +85,5 @@ export class CalendarBaseComponent implements OnInit {
 
   deleteAppointment(id: number) {
     this.appointments.update(current => current.filter(appointment => appointment.id !== id))
-  }
-
-  async fetchAppointment() {
-    const data = await firstValueFrom(this.calendarService.getAppointment())
-    if (data) {
-      this.appointments.set(data)
-    }
-  }
-
-  ngOnInit(): void {
-    this.fetchAppointment()
   }
 }

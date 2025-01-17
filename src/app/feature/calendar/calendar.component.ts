@@ -1,10 +1,11 @@
-import { Component, signal } from '@angular/core'
+import { Component, inject, OnInit, signal } from '@angular/core'
 import { MonthlyViewComponent } from './monthly-view/monthly-view.component'
 import { WeeklyViewComponent } from './weekly-view/weekly-view.component'
 import { DailyViewComponent } from './daily-view/daily-view.component'
 import { Appointment } from './models/appointment.model'
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
 import { MatButtonModule } from '@angular/material/button'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-calendar',
@@ -12,11 +13,13 @@ import { MatButtonModule } from '@angular/material/button'
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
-export class CalendarComponent {
-  viewDate = signal<Date>(new Date())
+export class CalendarComponent implements OnInit {
   calendarMode = signal<'monthly' | 'weekly' | 'daily'>('monthly')
+  viewDate = signal<Date>(new Date())
 
   appointments = signal<Appointment[]>([])
+
+  #route = inject(ActivatedRoute)
 
   dropItem(event: CdkDragDrop<Appointment[]>) {
     this.appointments.update(appointments => {
@@ -27,5 +30,13 @@ export class CalendarComponent {
 
   showToday(): void {
     this.viewDate.set(new Date())
+  }
+
+  ngOnInit(): void {
+    const appintments = this.#route.snapshot.data['appointments']
+
+    if (appintments) {
+      this.appointments.set(appintments)
+    }
   }
 }

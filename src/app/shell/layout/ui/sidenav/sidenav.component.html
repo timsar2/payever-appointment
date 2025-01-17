@@ -1,0 +1,30 @@
+<div class="header">
+  <app-header [drawer]="sidenav" />
+</div>
+
+<mat-sidenav-container autosize>
+  <mat-sidenav mat-sidenav class="sidenav" #sidenav fixedInViewport="true" mode="side">
+    <h3>Pay Ever</h3>
+    <section>
+      @for (page of pages(); track $index) {
+        <p
+          routerDirection="root"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="active"
+          [routerLink]="page.url"
+          style="cursor: pointer"
+        >
+          <span class="title">
+            <mat-icon>{{ page.icon }}</mat-icon>
+            <span>{{ page.title }}</span>
+          </span>
+        </p>
+      }
+    </section>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-container">
+    <div class="content">
+      <router-outlet />
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -7,12 +7,12 @@
 
 @switch (calendarMode()) {
   @case ('monthly') {
-    <app-monthly-view [viewDate]="viewDate()" />
+    <app-monthly-view [appointments]="appointments()" [viewDate]="viewDate()" />
   }
   @case ('weekly') {
-    <app-weekly-view [viewDate]="viewDate()" />
+    <app-weekly-view [appointments]="appointments()" [viewDate]="viewDate()" />
   }
   @case ('daily') {
-    <app-daily-view [viewDate]="viewDate()" />
+    <app-daily-view [appointments]="appointments()" [viewDate]="viewDate()" />
   }
 }

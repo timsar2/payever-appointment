@@ -25,7 +25,7 @@ export class AuthService {
     await this.#storageService.clear()
 
     this.#router
-      .navigate(['/login'], { replaceUrl: true })
+      .navigate(['/'], { replaceUrl: true })
       .then(() => this.authSignal.update(() => ({ isAuthenticated: false, user: undefined })))
   }
 }
